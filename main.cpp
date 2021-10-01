@@ -170,6 +170,52 @@ void mergeSort(int indexes[], int arr[], int l, int r) {
 
 //MAIN PROGRAM
 
+class Train
+{
+  public:
+    Train(node_info* map_arg, int num_stops_arg, int dest_index_arg, next_node stop0_arg, next_node stop1_arg)
+    {
+      memcpy(map, map_arg, (sizeof(map)/(NUM_NODES + 1)) * NUM_NODES);
+      num_stops = num_stops_arg;
+      dest_index = dest_index_arg;
+      //initialize train's starting position
+      map[NUM_NODES].current_index = num_stops_arg;
+      map[NUM_NODES].next_node[0] = stop0_arg;
+      map[NUM_NODES].next_node[1] = stop1_arg;
+      map[NUM_NODES].next_node[2].index = NO_CONNECTION;
+      map[NUM_NODES].next_node[2].distance = INF_DIST;
+      cout << "Constructor called" << endl;
+    }
+
+    void determine_route()
+    {
+      memset(stop_order, 0, sizeof(stop_order));
+      for(int i = 0; i<(NUM_NODES + 1); i++)
+      {
+        stop_order[0][i] = i;
+      }
+      for(int i = 0; i<(NUM_NODES + 1); i++)
+      {
+        cout << "Map Index" << map[i].current_index  << endl;
+      }
+
+      dijkstra(&stop_order[1][0], map, NUM_NODES + 1, NUM_NODES);
+
+      // for (int i = 0; i < (NUM_NODES + 1); i++)
+      // cout << "Pre-sort" << stop_order[0][i] << "  " << stop_order[1][i] << endl;
+
+      mergeSort(&stop_order[0][0], &stop_order[1][0], 0, NUM_NODES);
+
+      // for (int i = 0; i < (NUM_NODES + 1); i++)
+      // cout << "After sort" << stop_order[0][i] << "  " << stop_order[1][i] << endl;
+
+    }
+    private:
+      node_info map[NUM_NODES + 1]; 
+      int num_stops;
+      int dest_index;
+      int stop_order[2][NUM_NODES+1];
+};
 
 // driver program to test above function
 int main()
@@ -235,20 +281,23 @@ int main()
         }
     };
 
-  for(int num = 0; num<NUM_NODES; num++)
-  {
-      dist[0][num] = num;
-  }
+    next_node adjacent_train_stops[2] =
+    {
+      {
+        .index = 0,
+        .distance = 2
+      },
+      {
+        .index = 1,
+        .distance = 2
+      }
+    };
+    {
 
-  dijkstra(&dist[1][0], graph, NUM_NODES, src);
+    }
+    Train train1(graph, NUM_NODES, 4, adjacent_train_stops[0], adjacent_train_stops[1]);
 
-  for (int i = 0; i < NUM_NODES; i++)
-  cout << "Pre-sort" << dist[0][i] << "  " << dist[1][i] << endl;
-
-  mergeSort(&dist[0][0], &dist[1][0], 0, NUM_NODES - 1);
-
-  for (int i = 0; i < NUM_NODES; i++)
-  cout << "After sort" << dist[0][i] << "  " << dist[1][i] << endl;
+    train1.determine_route();
 
   return 0;
 }
