@@ -20,6 +20,7 @@ typedef struct next_node_t
 typedef struct node_info_t
 {
     int current_index;
+    int wait_time;
     next_node next_node[3];
 }node_info;
 
@@ -173,11 +174,10 @@ void mergeSort(int indexes[], int arr[], int l, int r) {
 class Train
 {
   public:
-    Train(node_info* map_arg, int num_stops_arg, int dest_index_arg, next_node stop0_arg, next_node stop1_arg)
+    Train(node_info* map_arg, int num_stops_arg, next_node stop0_arg, next_node stop1_arg)
     {
       memcpy(map, map_arg, (sizeof(map)/(NUM_NODES + 1)) * NUM_NODES);
       num_stops = num_stops_arg;
-      dest_index = dest_index_arg;
       //initialize train's starting position
       map[NUM_NODES].current_index = num_stops_arg;
       map[NUM_NODES].next_node[0] = stop0_arg;
@@ -194,21 +194,40 @@ class Train
       {
         stop_order[0][i] = i;
       }
-      for(int i = 0; i<(NUM_NODES + 1); i++)
-      {
-        cout << "Map Index" << map[i].current_index  << endl;
-      }
 
+      //use dijkstra to determine shortest time to each stop
       dijkstra(&stop_order[1][0], map, NUM_NODES + 1, NUM_NODES);
 
       // for (int i = 0; i < (NUM_NODES + 1); i++)
       // cout << "Pre-sort" << stop_order[0][i] << "  " << stop_order[1][i] << endl;
 
+      //sort the stop_order such that a path is shown quickest path to move through all stops
       mergeSort(&stop_order[0][0], &stop_order[1][0], 0, NUM_NODES);
 
       // for (int i = 0; i < (NUM_NODES + 1); i++)
       // cout << "After sort" << stop_order[0][i] << "  " << stop_order[1][i] << endl;
 
+    }
+    bool move_train()
+    {
+      for(int i = 0; i < (NUM_NODES + 1); i++)
+      {
+        if(stop_order[1][i] > 0)
+        {
+          stop_order[1][i]--;
+          return false;
+        }
+        else if(stop_order[0][i] == dest_index)
+        {
+          return true;
+        }
+      }
+      cout << "Error getting to stop" << endl;
+      return true;
+    }
+    void start_travel_to_dest(int dest_index_arg)
+    {
+      dest_index = dest_index_arg;
     }
     private:
       node_info map[NUM_NODES + 1]; 
@@ -295,9 +314,11 @@ int main()
     {
 
     }
-    Train train1(graph, NUM_NODES, 4, adjacent_train_stops[0], adjacent_train_stops[1]);
+    Train train1(graph, NUM_NODES, adjacent_train_stops[0], adjacent_train_stops[1]);
 
     train1.determine_route();
+    train1.start_travel_to_dest(1);
+    while(train1.move_train() != true);
 
   return 0;
 }
