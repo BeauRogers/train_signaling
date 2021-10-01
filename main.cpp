@@ -6,75 +6,92 @@ using namespace std;
 
 
 //DIJAKSTRA DISTANCE ALGORITHM
+// Taken from "https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/"
 
 // Number of vertices in the graph
 #define V 9
 
-// A utility function to find the vertex with minimum distance value, from
-// the set of vertices not yet included in shortest path tree
-int minDistance(int dist[], bool sptSet[])
+typedef struct next_node_t
 {
+    int distance;
+    int index;
+}next_node;
 
-	// Initialize min value
-	int min = INT_MAX, min_index;
+typedef struct node_info_t
+{
+    int current_index;
+    next_node next_node[3];
+}node_info;
 
-	for (int v = 0; v < V; v++)
-		if (sptSet[v] == false && dist[v] <= min)
-			min = dist[v], min_index = v;
+#define NUM_NODES 6
+#define INF_DIST 65535
+#define NO_CONNECTION -1
+#define IGNORE_NODE -2
+#define UNDEFINED_NODE -3
 
-	return min_index;
+void dijkstra(int* shortest_distance, node_info* graph, int num_nodes, int src_node)
+{
+  int checked_nodes = 0;
+  int min_node;
+
+  //initialize the shortest distance array
+  for(int nodes = 0; nodes < num_nodes; nodes++)
+  {
+      shortest_distance[nodes] = INF_DIST;
+  }
+  shortest_distance[src_node] = 0;
+
+  while(checked_nodes < num_nodes)
+  {
+      min_node = UNDEFINED_NODE;
+      
+      //Determine which not to start from here
+      for(int current_node = 0; current_node < num_nodes; current_node++)
+      {
+          if(graph[current_node].current_index == IGNORE_NODE)
+          {
+              continue;
+          }
+          else if(min_node == UNDEFINED_NODE)
+          {
+              min_node = current_node;
+          }
+          else if(shortest_distance[min_node] > shortest_distance[current_node])
+          {
+              min_node = current_node;
+          }
+      }
+
+      //check each connection node
+      for(int i = 0; i < 3; i++)
+      {
+          if(graph[min_node].next_node[i].index == NO_CONNECTION)
+          {
+              continue;
+          }
+
+          //check if distance to this node is shorter than existing distance
+          else if((graph[min_node].next_node[i].distance + shortest_distance[min_node])\
+          < shortest_distance[graph[min_node].next_node[i].index])
+          {
+              //update the distance with this new shorter distance
+              shortest_distance[graph[min_node].next_node[i].index] = \
+                  graph[min_node].next_node[i].distance + shortest_distance[min_node];
+          }
+      }
+      checked_nodes++;
+      graph[min_node].current_index = IGNORE_NODE;
+  }
+  /*for(int i=0; i< NUM_NODES; i++)
+  {
+      cout << "Node is " << shortest_distance[0][i] << " distance is " << shortest_distance[1][i] << endl;
+  }*/
+
 }
 
-// A utility function to print the constructed distance array
-void printSolution(int dist[])
-{
-	cout <<"Vertex \t Distance from Source" << endl;
-	for (int i = 0; i < V; i++)
-		cout << i << " \t\t"<<dist[i]<< endl;
-}
-
-// Function that implements Dijkstra's single source shortest path algorithm
-// for a graph represented using adjacency matrix representation
-void dijkstra(int* dist, int graph[V][V], int src)
-{
-	//int dist[V]; // The output array. dist[i] will hold the shortest
-	// distance from src to i
-
-	bool sptSet[V]; // sptSet[i] will be true if vertex i is included in shortest
-	// path tree or shortest distance from src to i is finalized
-
-	// Initialize all distances as INFINITE and stpSet[] as false
-	for (int i = 0; i < V; i++)
-		dist[i] = INT_MAX, sptSet[i] = false;
-
-	// Distance of source vertex from itself is always 0
-	dist[src] = 0;
-
-	// Find shortest path for all vertices
-	for (int count = 0; count < V - 1; count++) {
-		// Pick the minimum distance vertex from the set of vertices not
-		// yet processed. u is always equal to src in the first iteration.
-		int u = minDistance(dist, sptSet);
-
-		// Mark the picked vertex as processed
-		sptSet[u] = true;
-
-		// Update dist value of the adjacent vertices of the picked vertex.
-		for (int v = 0; v < V; v++)
-
-			// Update dist[v] only if is not in sptSet, there is an edge from
-			// u to v, and total weight of path from src to v through u is
-			// smaller than current value of dist[v]
-			if (!sptSet[v] && graph[u][v] && dist[u] != INT_MAX
-				&& dist[u] + graph[u][v] < dist[v])
-				dist[v] = dist[u] + graph[u][v];
-	}
-
-	// print the constructed distance array
-	//printSolution(dist);
-}
 
 //MERGE SORTING ALGORITHM
+//Taken from "https://www.programiz.com/dsa/merge-sort"
 
 
 // Merge two subarrays L and M into arr
@@ -153,43 +170,87 @@ void mergeSort(int indexes[], int arr[], int l, int r) {
 
 //MAIN PROGRAM
 
+
 // driver program to test above function
 int main()
 {
-    int dist[2][V];
-    int src = 0;
-	/* Let us create the example graph discussed above */
-	int graph[V][V] = { { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
-						{ 4, 0, 8, 0, 0, 0, 0, 11, 0 },
-						{ 0, 8, 0, 7, 0, 4, 0, 0, 2 },
-						{ 0, 0, 7, 0, 9, 14, 0, 0, 0 },
-						{ 0, 0, 0, 9, 0, 10, 0, 0, 0 },
-						{ 0, 0, 4, 14, 10, 0, 2, 0, 0 },
-						{ 0, 0, 0, 0, 0, 2, 0, 1, 6 },
-						{ 8, 11, 0, 0, 0, 0, 1, 0, 7 },
-						{ 0, 0, 2, 0, 0, 0, 6, 7, 0 } };
-
-    for(int num = 0; num<V; num++)
-    {
-        dist[0][num] = num;
-    }
-
-	dijkstra(&dist[1][0], graph, src);
-
-    int path[V];
-    int goal = 2;
-    //Let's say we want to get to some node. Let's say node 2, let's 
-    //see the path
-
-    for (int i = 0; i < V; i++)
-		cout << "Pre-sort" << dist[0][i] << "  " << dist[1][i] << endl;
-
-    mergeSort(&dist[0][0], &dist[1][0], 0, V - 1);
-
-    for (int i = 0; i < V; i++)
-		cout << "After sort" << dist[0][i] << "  " << dist[1][i] << endl;
+  int dist[2][NUM_NODES];
+  int src = 0;
 	
-    return 0;
+  node_info graph[NUM_NODES] = 
+    {
+        {
+            .current_index = 0, 
+            .next_node[0].index = 1,
+            .next_node[0].distance = 5, 
+            .next_node[1].distance = 2, 
+            .next_node[1].index = 2,
+            .next_node[2].distance = INF_DIST, 
+            .next_node[2].index = NO_CONNECTION,
+        },
+        {
+            .current_index = 1, 
+            .next_node[0].distance = 5, 
+            .next_node[0].index = 0,
+            .next_node[1].distance = 4, 
+            .next_node[1].index = 2,
+            .next_node[2].distance = INF_DIST, 
+            .next_node[2].index = NO_CONNECTION,
+        },
+        {
+            .current_index = 2, 
+            .next_node[0].distance = 2, 
+            .next_node[0].index = 0,
+            .next_node[1].distance = 8, 
+            .next_node[1].index = 4,
+            .next_node[2].distance = 4, 
+            .next_node[2].index = 1,
+        },
+        {
+            .current_index = 3, 
+            .next_node[0].distance = 6, 
+            .next_node[0].index = 4,
+            .next_node[1].distance = 4, 
+            .next_node[1].index = 5,
+            .next_node[2].distance = INF_DIST, 
+            .next_node[2].index = NO_CONNECTION,
+        },
+        {
+            .current_index = 4, 
+            .next_node[0].distance = 8, 
+            .next_node[0].index = 2,
+            .next_node[1].distance = 6, 
+            .next_node[1].index = 3,
+            .next_node[2].distance = INF_DIST, 
+            .next_node[2].index = NO_CONNECTION,
+        },
+        {
+            .current_index = 5, 
+            .next_node[0].distance = 4, 
+            .next_node[0].index = 3,
+            .next_node[1].distance = INF_DIST, 
+            .next_node[1].index = NO_CONNECTION,
+            .next_node[2].distance = INF_DIST, 
+            .next_node[2].index = NO_CONNECTION,
+        }
+    };
+
+  for(int num = 0; num<NUM_NODES; num++)
+  {
+      dist[0][num] = num;
+  }
+
+  dijkstra(&dist[1][0], graph, NUM_NODES, src);
+
+  for (int i = 0; i < NUM_NODES; i++)
+  cout << "Pre-sort" << dist[0][i] << "  " << dist[1][i] << endl;
+
+  mergeSort(&dist[0][0], &dist[1][0], 0, NUM_NODES - 1);
+
+  for (int i = 0; i < NUM_NODES; i++)
+  cout << "After sort" << dist[0][i] << "  " << dist[1][i] << endl;
+
+  return 0;
 }
 
 // This code is contributed by shivanisinghss2110
