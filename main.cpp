@@ -20,7 +20,7 @@ typedef struct next_node_t
 typedef struct node_info_t
 {
     int current_index;
-    int wait_time;
+    bool stop_closed;
     next_node next_node[3];
 }node_info;
 
@@ -185,11 +185,11 @@ class Train
       map[NUM_NODES].next_node[2].index = NO_CONNECTION;
       map[NUM_NODES].next_node[2].distance = INF_DIST;
       cout << "Constructor called" << endl;
-      for (int i = 0; i < (NUM_NODES + 1); i++)
-      cout << "Constructed map " << map[i].current_index << endl;
+      // for (int i = 0; i < (NUM_NODES + 1); i++)
+      // cout << "Constructed map " << map[i].current_index << endl;
     }
 
-    bool determine_route(int dest_stop_arg)
+    bool determine_route(int dest_stop_arg, node_info* global_map)
     {
       node_info temp_map[NUM_NODES + 1];
 
@@ -217,24 +217,26 @@ class Train
       //sort the stop_order such that a path is shown quickest path to move through all stops
       mergeSort(&stop_order[0][0], &stop_order[1][0], 0, NUM_NODES);
 
-      for (int i = 0; i < (NUM_NODES + 1); i++)
-      cout << "After sort" << stop_order[0][i] << "  " << stop_order[1][i] << endl;
+      // for (int i = 0; i < (NUM_NODES + 1); i++)
+      // cout << "After sort" << stop_order[0][i] << "  " << stop_order[1][i] << endl;
 
 
-      initialize_travel_to_dest(dest_stop_arg);
+      initialize_travel_to_dest(dest_stop_arg, global_map);
       return true;
     }
-    bool move_train()
+    bool move_train(node_info* global_map)
     {
-      if(waiting == true)
+      if(completed_index == dest_index)
       {
-        if(map[stop_order[0][next_index]].wait_time == false)
+        return true;
+      }
+      else if(waiting == true)
+      {
+        if(global_map[stop_order[0][next_index]].stop_closed == false)
         {
-          //occupy the next stop and de-occupy the current stop
-          map[stop_order[0][next_index]].wait_time = true;
-          //also occupy the rail line you are using
-          map[stop_order[0][completed_index]].wait_time = false;
-          //free up the rail line you are using
+          // cout << "Waitmode cleared for completed index of " << completed_index << endl;
+          close_next_open_last_stop(global_map, completed_index, next_index);
+          waiting = false;
         }
         else
         {
@@ -250,6 +252,7 @@ class Train
         if(completed_index == dest_index)
         {
           cout << "Destination reached" << endl;
+          global_map[stop_order[0][completed_index]].stop_closed = false;
           return true;
         }
 
@@ -264,17 +267,14 @@ class Train
         }
 
         //check if we need to wait
-        if(map[stop_order[0][next_index]].wait_time == true)
+        if(global_map[stop_order[0][next_index]].stop_closed == true)
         {
+          // cout << "Wait mode set of completed index of " << completed_index << endl;
           waiting = true;
         }
         else
         {
-          //occupy the next stop and de-occupy the current stop
-          map[stop_order[0][next_index]].wait_time = true;
-          //also occupy the rail line you are using
-          map[stop_order[0][completed_index]].wait_time = false;
-          //free up the rail line you are using
+          close_next_open_last_stop(global_map, completed_index, next_index);
         }
       }
       return false;
@@ -293,7 +293,7 @@ class Train
       int dist_from_completed;
 
 
-      void initialize_travel_to_dest(int dest_stop_arg)
+      void initialize_travel_to_dest(int dest_stop_arg, node_info* global_map)
       {
         for(int i = 0; i<(NUM_NODES + 1); i++)
         {
@@ -302,7 +302,6 @@ class Train
             dest_index = i;
           }
         }
-        waiting = false;
         //Last stop of the ordered map
         completed_index = 0;
         next_index = 1;
@@ -313,6 +312,28 @@ class Train
           {
             dist_to_next = map[stop_order[0][completed_index]].next_node[i].distance;
           }
+        }
+        //check if we need to wait
+        if(global_map[stop_order[0][next_index]].stop_closed == true)
+        {
+          // cout << "Wait mode set for completed index of " << completed_index << endl;
+          waiting = true;
+        }
+        else
+        {
+          // cout << "Closing connection for " << next_index << endl;
+          close_next_open_last_stop(global_map, completed_index, next_index);
+        }
+        
+      }
+      void close_next_open_last_stop(node_info* global_map, int current_index, int next_index)
+      {
+        //occupy the next stop and de-occupy the current stop
+        global_map[stop_order[0][next_index]].stop_closed = true;
+        
+        if(completed_index != 0)//this stop doesn't exist in global map
+        {
+          global_map[stop_order[0][completed_index]].stop_closed = false;
         }
       }
 };
@@ -326,53 +347,60 @@ int main()
   node_info graph[NUM_NODES] = 
     {
         {
-            .current_index = 0, 
-            .next_node[0].index = 1,
-            .next_node[0].distance = 5, 
-            .next_node[1].distance = 2, 
-            .next_node[1].index = 2,
+            .current_index = 0,
+            .stop_closed = false, 
+            .next_node[0].index = 2,
+            .next_node[0].distance = 8, 
+            .next_node[1].distance = INF_DIST, 
+            .next_node[1].index = NO_CONNECTION,
             .next_node[2].distance = INF_DIST, 
             .next_node[2].index = NO_CONNECTION,
+
         },
         {
             .current_index = 1, 
-            .next_node[0].distance = 5, 
-            .next_node[0].index = 0,
-            .next_node[1].distance = 4, 
-            .next_node[1].index = 2,
+            .stop_closed = false, 
+            .next_node[0].distance = 8, 
+            .next_node[0].index = 2,
+            .next_node[1].distance = INF_DIST, 
+            .next_node[1].index = NO_CONNECTION,
             .next_node[2].distance = INF_DIST, 
             .next_node[2].index = NO_CONNECTION,
         },
         {
             .current_index = 2, 
-            .next_node[0].distance = 2, 
+            .stop_closed = false, 
+            .next_node[0].distance = 8, 
             .next_node[0].index = 0,
-            .next_node[1].distance = 8, 
+            .next_node[1].distance = 4, 
             .next_node[1].index = 4,
-            .next_node[2].distance = 4, 
+            .next_node[2].distance = 8, 
             .next_node[2].index = 1,
         },
         {
             .current_index = 3, 
-            .next_node[0].distance = 6, 
+            .stop_closed = false, 
+            .next_node[0].distance = 20, 
             .next_node[0].index = 4,
-            .next_node[1].distance = 4, 
+            .next_node[1].distance = 20, 
             .next_node[1].index = 5,
             .next_node[2].distance = INF_DIST, 
             .next_node[2].index = NO_CONNECTION,
         },
         {
             .current_index = 4, 
-            .next_node[0].distance = 8, 
+            .stop_closed = false, 
+            .next_node[0].distance = 4, 
             .next_node[0].index = 2,
-            .next_node[1].distance = 6, 
+            .next_node[1].distance = 20, 
             .next_node[1].index = 3,
             .next_node[2].distance = INF_DIST, 
             .next_node[2].index = NO_CONNECTION,
         },
         {
             .current_index = 5, 
-            .next_node[0].distance = 4, 
+            .stop_closed = false, 
+            .next_node[0].distance = 20, 
             .next_node[0].index = 3,
             .next_node[1].distance = INF_DIST, 
             .next_node[1].index = NO_CONNECTION,
@@ -385,20 +413,25 @@ int main()
     {
       {
         .index = 0,
-        .distance = 1
+        .distance = 5
       },
       {
-        .index = 1,
-        .distance = 3
+        .index = 2,
+        .distance = 2
       }
     };
-    {
 
-    }
     Train train1(graph, NUM_NODES, adjacent_train_stops[0], adjacent_train_stops[1]);
+    Train train2(graph, NUM_NODES, adjacent_train_stops[0], adjacent_train_stops[1]);
 
-    train1.determine_route(2);
-    while(train1.move_train() != true);
+    adjacent_train_stops[0].index = 1;
+    adjacent_train_stops[0].distance = 5;
+    adjacent_train_stops[1].index = 2;
+    adjacent_train_stops[1].distance = 2;
+
+    train1.determine_route(2, graph);
+    train2.determine_route(2, graph);
+    while((train1.move_train(graph) != true) || (train2.move_train(graph) != true));
 
   return 0;
 }
