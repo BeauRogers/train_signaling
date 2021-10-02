@@ -176,7 +176,7 @@ class Train
   public:
     Train(node_info* map_arg, int num_stops_arg, next_node stop0_arg, next_node stop1_arg)
     {
-      memcpy(map, map_arg, (sizeof(map)/(NUM_NODES + 1)) * NUM_NODES);
+      memcpy(map, map_arg, NUM_NODES*sizeof(map[0])); 
       num_stops = num_stops_arg;
       //initialize train's starting position
       map[NUM_NODES].current_index = num_stops_arg;
@@ -185,10 +185,23 @@ class Train
       map[NUM_NODES].next_node[2].index = NO_CONNECTION;
       map[NUM_NODES].next_node[2].distance = INF_DIST;
       cout << "Constructor called" << endl;
+      for (int i = 0; i < (NUM_NODES + 1); i++)
+      cout << "Constructed map " << map[i].current_index << endl;
     }
 
-    void determine_route()
+    bool determine_route(int dest_stop_arg)
     {
+      node_info temp_map[NUM_NODES + 1];
+
+      //verify we have a valid destination
+      if((dest_stop_arg) >= NUM_NODES || (dest_stop_arg < 0))
+      {
+        return false;
+      }
+
+      //Initialize a map that will be be compromised
+      memcpy(temp_map, map, sizeof(map));
+      //Initilize the stop order from 0 to last node
       memset(stop_order, 0, sizeof(stop_order));
       for(int i = 0; i<(NUM_NODES + 1); i++)
       {
@@ -196,7 +209,7 @@ class Train
       }
 
       //use dijkstra to determine shortest time to each stop
-      dijkstra(&stop_order[1][0], map, NUM_NODES + 1, NUM_NODES);
+      dijkstra(&stop_order[1][0], temp_map, NUM_NODES + 1, NUM_NODES);
 
       // for (int i = 0; i < (NUM_NODES + 1); i++)
       // cout << "Pre-sort" << stop_order[0][i] << "  " << stop_order[1][i] << endl;
@@ -204,36 +217,104 @@ class Train
       //sort the stop_order such that a path is shown quickest path to move through all stops
       mergeSort(&stop_order[0][0], &stop_order[1][0], 0, NUM_NODES);
 
-      // for (int i = 0; i < (NUM_NODES + 1); i++)
-      // cout << "After sort" << stop_order[0][i] << "  " << stop_order[1][i] << endl;
+      for (int i = 0; i < (NUM_NODES + 1); i++)
+      cout << "After sort" << stop_order[0][i] << "  " << stop_order[1][i] << endl;
 
+
+      initialize_travel_to_dest(dest_stop_arg);
+      return true;
     }
     bool move_train()
     {
-      for(int i = 0; i < (NUM_NODES + 1); i++)
+      if(waiting == true)
       {
-        if(stop_order[1][i] > 0)
+        if(map[stop_order[0][next_index]].wait_time == false)
         {
-          stop_order[1][i]--;
+          //occupy the next stop and de-occupy the current stop
+          map[stop_order[0][next_index]].wait_time = true;
+          //also occupy the rail line you are using
+          map[stop_order[0][completed_index]].wait_time = false;
+          //free up the rail line you are using
+        }
+        else
+        {
           return false;
         }
-        else if(stop_order[0][i] == dest_index)
+      }
+      dist_to_next--;
+      
+      if(dist_to_next == 0)
+      {
+        completed_index = next_index;
+        //check if we're at our destination
+        if(completed_index == dest_index)
         {
+          cout << "Destination reached" << endl;
           return true;
         }
+
+        //determine next stop
+        next_index++;
+        for(int i = 0; i<3; i++)
+        {
+          if(stop_order[0][next_index] == map[stop_order[0][completed_index]].next_node[i].index)
+          {
+            dist_to_next = map[stop_order[0][completed_index]].next_node[i].distance;
+          }
+        }
+
+        //check if we need to wait
+        if(map[stop_order[0][next_index]].wait_time == true)
+        {
+          waiting = true;
+        }
+        else
+        {
+          //occupy the next stop and de-occupy the current stop
+          map[stop_order[0][next_index]].wait_time = true;
+          //also occupy the rail line you are using
+          map[stop_order[0][completed_index]].wait_time = false;
+          //free up the rail line you are using
+        }
       }
-      cout << "Error getting to stop" << endl;
-      return true;
-    }
-    void start_travel_to_dest(int dest_index_arg)
-    {
-      dest_index = dest_index_arg;
+      return false;
     }
     private:
       node_info map[NUM_NODES + 1]; 
       int num_stops;
-      int dest_index;
+      bool waiting;
       int stop_order[2][NUM_NODES+1];
+
+      //Indexes based on stop_order
+      int dest_index;
+      int completed_index;
+      int next_index;
+      int dist_to_next;
+      int dist_from_completed;
+
+
+      void initialize_travel_to_dest(int dest_stop_arg)
+      {
+        for(int i = 0; i<(NUM_NODES + 1); i++)
+        {
+          if(dest_stop_arg == stop_order[0][i])
+          {
+            dest_index = i;
+          }
+        }
+        waiting = false;
+        //Last stop of the ordered map
+        completed_index = 0;
+        next_index = 1;
+        //consider adding function to verify next index leads to destination
+        for(int i = 0; i<3; i++)
+        {
+          if(stop_order[0][next_index] == map[stop_order[0][completed_index]].next_node[i].index)
+          {
+            dist_to_next = map[stop_order[0][completed_index]].next_node[i].distance;
+          }
+        }
+      }
 };
 
 // driver program to test above function
@@ -304,11 +385,11 @@ int main()
     {
       {
         .index = 0,
-        .distance = 2
+        .distance = 1
       },
       {
         .index = 1,
-        .distance = 2
+        .distance = 3
       }
     };
     {
@@ -316,8 +397,7 @@ int main()
     }
     Train train1(graph, NUM_NODES, adjacent_train_stops[0], adjacent_train_stops[1]);
 
-    train1.determine_route();
-    train1.start_travel_to_dest(1);
+    train1.determine_route(2);
     while(train1.move_train() != true);
 
   return 0;
