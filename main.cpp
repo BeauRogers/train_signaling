@@ -393,8 +393,8 @@ int main()
             .next_node[0].index = 0,
             .next_node[1].distance = 4, 
             .next_node[1].index = 2,
-            .next_node[2].distance = INF_DIST, 
-            .next_node[2].index = NO_CONNECTION,
+            .next_node[2].distance = 3, 
+            .next_node[2].index = 3,
         },
         {
             .current_index = 2, 
@@ -413,8 +413,8 @@ int main()
             .next_node[0].index = 4,
             .next_node[1].distance = 4, 
             .next_node[1].index = 5,
-            .next_node[2].distance = INF_DIST, 
-            .next_node[2].index = NO_CONNECTION,
+            .next_node[2].distance = 3, 
+            .next_node[2].index = 1,
         },
         {
             .current_index = 4, 
@@ -455,11 +455,11 @@ int main()
     adjacent_train_stops[0].distance = 1;
     adjacent_train_stops[1].index = 2;
     adjacent_train_stops[1].distance = 2;
-    // Train train2(graph, NUM_NODES, adjacent_train_stops[0], adjacent_train_stops[1]);
+    Train train2(graph, NUM_NODES, adjacent_train_stops[0], adjacent_train_stops[1]);
 
-    train1.determine_route(5, graph);
-    // train2.determine_route(2, graph);
-    while((train1.move_train(graph) != true));// || (train2.move_train(graph) != true));
+    train1.determine_route(4, graph);
+    train2.determine_route(2, graph);
+    while((train1.move_train(graph) != true) || (train2.move_train(graph) != true));
 
   return 0;
 }
