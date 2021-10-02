@@ -257,7 +257,7 @@ class Train
         }
 
         //determine next stop
-        next_index++;
+        next_index = determine_next_index(completed_index, completed_index, stop_order[1][completed_index]);
         for(int i = 0; i<3; i++)
         {
           if(stop_order[0][next_index] == map[stop_order[0][completed_index]].next_node[i].index)
@@ -304,7 +304,7 @@ class Train
         }
         //Last stop of the ordered map
         completed_index = 0;
-        next_index = 1;
+        next_index = determine_next_index(completed_index, completed_index, stop_order[1][completed_index]);//1;
         //consider adding function to verify next index leads to destination
         for(int i = 0; i<3; i++)
         {
@@ -336,6 +336,36 @@ class Train
           global_map[stop_order[0][completed_index]].stop_closed = false;
         }
       }
+      int determine_next_index(int root_index, int last_index, int dist_travelled)
+      {
+        int next_dist_travelled;
+        //loop through possible roots starting from last_index
+        for(int stop_index = last_index+1; stop_index<(NUM_NODES+1); stop_index++)
+        {
+          for(int i = 0; i<3; i++)
+          {
+            if(map[stop_order[0][last_index]].next_node[i].index == map[stop_order[0][stop_index]].current_index)
+            {
+              next_dist_travelled = dist_travelled + map[stop_order[0][last_index]].next_node[i].distance;
+
+              if(next_dist_travelled == stop_order[1][stop_index])
+              {
+                if(stop_index == dest_index)
+                {
+                  return stop_index;
+                }
+                //from this index, see if the paths following it are the shortest path that we've already found
+                if(determine_next_index(root_index, stop_index, next_dist_travelled) > root_index)
+                {
+                  return stop_index;
+                }
+              }
+            }
+          }
+        }
+        //If destination not found, return the root_index
+        return root_index;
+      }
 };
 
 // driver program to test above function
@@ -348,59 +378,58 @@ int main()
     {
         {
             .current_index = 0,
-            .stop_closed = false, 
-            .next_node[0].index = 2,
-            .next_node[0].distance = 8, 
-            .next_node[1].distance = INF_DIST, 
-            .next_node[1].index = NO_CONNECTION,
+            .stop_closed = false,
+            .next_node[0].index = 1,
+            .next_node[0].distance = 5, 
+            .next_node[1].distance = 2, 
+            .next_node[1].index = 2,
             .next_node[2].distance = INF_DIST, 
             .next_node[2].index = NO_CONNECTION,
-
         },
         {
             .current_index = 1, 
-            .stop_closed = false, 
-            .next_node[0].distance = 8, 
-            .next_node[0].index = 2,
-            .next_node[1].distance = INF_DIST, 
-            .next_node[1].index = NO_CONNECTION,
+            .stop_closed = false,
+            .next_node[0].distance = 5, 
+            .next_node[0].index = 0,
+            .next_node[1].distance = 4, 
+            .next_node[1].index = 2,
             .next_node[2].distance = INF_DIST, 
             .next_node[2].index = NO_CONNECTION,
         },
         {
             .current_index = 2, 
-            .stop_closed = false, 
-            .next_node[0].distance = 8, 
+            .stop_closed = false,
+            .next_node[0].distance = 2, 
             .next_node[0].index = 0,
-            .next_node[1].distance = 4, 
+            .next_node[1].distance = 8, 
             .next_node[1].index = 4,
-            .next_node[2].distance = 8, 
+            .next_node[2].distance = 4, 
             .next_node[2].index = 1,
         },
         {
             .current_index = 3, 
-            .stop_closed = false, 
-            .next_node[0].distance = 20, 
+            .stop_closed = false,
+            .next_node[0].distance = 6, 
             .next_node[0].index = 4,
-            .next_node[1].distance = 20, 
+            .next_node[1].distance = 4, 
             .next_node[1].index = 5,
             .next_node[2].distance = INF_DIST, 
             .next_node[2].index = NO_CONNECTION,
         },
         {
             .current_index = 4, 
-            .stop_closed = false, 
-            .next_node[0].distance = 4, 
+            .stop_closed = false,
+            .next_node[0].distance = 8, 
             .next_node[0].index = 2,
-            .next_node[1].distance = 20, 
+            .next_node[1].distance = 6, 
             .next_node[1].index = 3,
             .next_node[2].distance = INF_DIST, 
             .next_node[2].index = NO_CONNECTION,
         },
         {
             .current_index = 5, 
-            .stop_closed = false, 
-            .next_node[0].distance = 20, 
+            .stop_closed = false,
+            .next_node[0].distance = 4, 
             .next_node[0].index = 3,
             .next_node[1].distance = INF_DIST, 
             .next_node[1].index = NO_CONNECTION,
@@ -413,25 +442,24 @@ int main()
     {
       {
         .index = 0,
-        .distance = 5
+        .distance = 3
       },
       {
-        .index = 2,
-        .distance = 2
+        .index = 1,
+        .distance = 1
       }
     };
-
     Train train1(graph, NUM_NODES, adjacent_train_stops[0], adjacent_train_stops[1]);
-    Train train2(graph, NUM_NODES, adjacent_train_stops[0], adjacent_train_stops[1]);
 
     adjacent_train_stops[0].index = 1;
-    adjacent_train_stops[0].distance = 5;
+    adjacent_train_stops[0].distance = 1;
     adjacent_train_stops[1].index = 2;
     adjacent_train_stops[1].distance = 2;
+    // Train train2(graph, NUM_NODES, adjacent_train_stops[0], adjacent_train_stops[1]);
 
-    train1.determine_route(2, graph);
-    train2.determine_route(2, graph);
-    while((train1.move_train(graph) != true) || (train2.move_train(graph) != true));
+    train1.determine_route(5, graph);
+    // train2.determine_route(2, graph);
+    while((train1.move_train(graph) != true));// || (train2.move_train(graph) != true));
 
   return 0;
 }
