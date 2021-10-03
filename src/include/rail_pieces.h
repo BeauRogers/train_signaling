@@ -2,7 +2,10 @@
 using namespace std;
 #include <limits.h>
 
-#define NUM_NODES 6
+#ifndef RAIL_PIECES
+#define RAIL_PIECES
+
+#define NUM_NODES 7
 #define INF_DIST 65535
 #define NO_CONNECTION -1
 #define IGNORE_NODE -2
@@ -23,3 +26,5 @@ typedef struct node_info_t
 
 
 node_info* get_rail_map(void);
+
+#endif

@@ -10,8 +10,8 @@ node_info map[NUM_NODES] =
             .next_node[0].distance = 5, 
             .next_node[1].distance = 2, 
             .next_node[1].index = 2,
-            .next_node[2].distance = INF_DIST, 
-            .next_node[2].index = NO_CONNECTION,
+            .next_node[2].distance = 3, 
+            .next_node[2].index = 0,
         },
         {
             .current_index = 1, 
@@ -62,7 +62,17 @@ node_info map[NUM_NODES] =
             .next_node[1].index = NO_CONNECTION,
             .next_node[2].distance = INF_DIST, 
             .next_node[2].index = NO_CONNECTION,
-        }
+        },
+        {
+            .current_index = 6, 
+            .stop_closed = false,
+            .next_node[0].distance = 3, 
+            .next_node[0].index = 0,
+            .next_node[1].distance = INF_DIST, 
+            .next_node[1].index = NO_CONNECTION,
+            .next_node[2].distance = INF_DIST, 
+            .next_node[2].index = NO_CONNECTION,
+        },
     };
 
 
