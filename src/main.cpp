@@ -6,6 +6,11 @@ using namespace std;
 #include "include/dijkstra.h"
 #include "include/merge_sort.h"
 
+// #define PRINT_MAPS
+#undef PRINT_MAPS
+// #define INDICATE_WAITS
+#undef INDICATE_WAITS
+
 //Train Object
 class Train
 {
@@ -22,8 +27,10 @@ class Train
       map[NUM_NODES].next_node[2].index = NO_CONNECTION;
       map[NUM_NODES].next_node[2].distance = INF_DIST;
       cout << "Constructor called" << endl;
-      // for (int i = 0; i < (NUM_NODES + 1); i++)
-      // cout << "Constructed map " << map[i].current_index << endl;
+#ifdef PRINT_MAPS
+      for (int i = 0; i < (NUM_NODES + 1); i++)
+      cout << "Constructed map " << map[i].current_index << endl;
+#endif
     }
 
     bool determine_route(int dest_stop_arg, node_info* global_map)
@@ -48,15 +55,17 @@ class Train
       //use dijkstra to determine shortest time to each stop
       dijkstra(&stop_order[1][0], temp_map, NUM_NODES + 1, NUM_NODES);
 
-      // for (int i = 0; i < (NUM_NODES + 1); i++)
-      // cout << "Pre-sort" << stop_order[0][i] << "  " << stop_order[1][i] << endl;
-
+#ifdef PRINT_MAPS
+      for (int i = 0; i < (NUM_NODES + 1); i++)
+      cout << "Pre-sort" << stop_order[0][i] << "  " << stop_order[1][i] << endl;
+#endif
       //sort the stop_order such that a path is shown quickest path to move through all stops
       mergeSort(&stop_order[0][0], &stop_order[1][0], 0, NUM_NODES);
 
-      // for (int i = 0; i < (NUM_NODES + 1); i++)
-      // cout << "After sort" << stop_order[0][i] << "  " << stop_order[1][i] << endl;
-
+#ifdef PRINT_MAPS
+      for (int i = 0; i < (NUM_NODES + 1); i++)
+      cout << "After sort" << stop_order[0][i] << "  " << stop_order[1][i] << endl;
+#endif
 
       return initialize_travel_to_dest(dest_stop_arg, global_map);
     }
@@ -70,7 +79,9 @@ class Train
       {
         if(global_map[stop_order[0][next_index]].stop_closed == false)
         {
-          // cout << "Waitmode cleared for completed index of " << completed_index << endl;
+#ifdef INDICATE_WAITS
+          cout << "Waitmode cleared for completed index of " << completed_index << endl;
+#endif
           close_next_open_last_stop(global_map, completed_index, next_index);
           waiting = false;
         }
@@ -105,7 +116,9 @@ class Train
         //check if we need to wait
         if(global_map[stop_order[0][next_index]].stop_closed == true)
         {
-          // cout << "Wait mode set of completed index of " << completed_index << endl;
+#ifdef INDICATE_WAITS
+          cout << "Wait mode set of completed index of " << completed_index << endl;
+#endif
           waiting = true;
         }
         else
@@ -165,10 +178,12 @@ class Train
         }
         else
         {
-          // cout << "Closing connection for " << next_index << endl;
+#ifdef INDICATE_WAITS
+          cout << "Closing connection for " << next_index << endl;
+#endif
           close_next_open_last_stop(global_map, completed_index, next_index);
         }
-        
+        return true;
       }
       void close_next_open_last_stop(node_info* global_map, int current_index, int next_index)
       {
