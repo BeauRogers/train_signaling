@@ -3,6 +3,11 @@ using namespace std;
 #include <limits.h>
 #include "rail_pieces.h"
 
+// #define PRINT_MAPS
+#undef PRINT_MAPS
+// #define INDICATE_WAITS
+#undef INDICATE_WAITS
+
 class Train
 {
   public:
