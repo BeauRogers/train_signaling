@@ -61,7 +61,7 @@ int main()
     train1.display_train_position();
     train2.display_train_position();
     cout << endl;
-    if(train1.train_is_waiting() && train2.train_is_waiting())
+    if(train1.is_train_waiting() && train2.is_train_waiting())
     {
       cout << "Trains in gridlock" << endl;
       break;

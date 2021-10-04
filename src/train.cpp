@@ -16,6 +16,7 @@ Train::Train(node_info* map_arg, int num_stops_arg, next_node stop0_arg,
     num_stops = num_stops_arg;
     //initialize train's starting position
     map[NUM_NODES].current_index = num_stops_arg;
+    map[NUM_NODES].stop_closed = false;
     map[NUM_NODES].next_node[0] = stop0_arg;
     map[NUM_NODES].next_node[1] = stop1_arg;
     map[NUM_NODES].next_node[2].index = NO_CONNECTION;
@@ -180,11 +181,29 @@ void Train::display_train_position(void)
     }
 }
 
-bool Train::train_is_waiting(void)
+bool Train::is_train_waiting(void)
 {
     return waiting;
 }
+node_info* Train::get_local_map(void)
+{
+    return map;
+}
 
+int* Train::get_stop_order(void)
+{
+    return &stop_order[0][0];
+}
+
+int* Train::get_stop_order_distance(void)
+{
+    return &stop_order[1][0];
+}
+
+std::string Train::get_train_name(void)
+{
+    return train_name;
+}
 
 bool Train::initialize_travel_to_dest(int dest_stop_arg, node_info* global_map)
 {

@@ -1,12 +1,14 @@
 #include "gtest/gtest.h"
 #include "gtest/gtest-matchers.h"
+#include "gtest/gtest_pred_impl.h"
 #include "../src/include/merge_sort.h"
 #include "../src/include/dijkstra.h"
+#include "../src/include/train.h"
 
 #define TEST_MAP_SIZE 6
 
 //We'll use a map for testing purposes
-node_info test_map[TEST_MAP_SIZE] = 
+const node_info test_map[TEST_MAP_SIZE] = 
     {
         {
             .current_index = 0,
@@ -75,9 +77,26 @@ bool compare_array(int* array1, int* array2, int size_array)
 {
     for (int i = 0; i < size_array; ++i){
         if (array1[i] != array2[i]){
-            return false;/* << "array[" << i
-                << "] (" << actual[i] << ") != expected[" << i
-                << "] (" << expected[i] << ")";*/
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool compare_map(node_info* map1, node_info* map2, int size_map)
+{
+    for (int i = 0; i < size_map; ++i){
+        if ((map1[i].current_index != map2[i].current_index) ||
+        (map1[i].stop_closed != map2[i].stop_closed)){
+            return false;
+        }
+        for(int j=0; j<3; j++)
+        {
+            if ((map1[i].next_node[j].distance != map2[i].next_node[j].distance) ||
+                (map1[i].next_node[j].index != map2[i].next_node[j].index)){
+                    return false;
+        }
         }
     }
 
@@ -118,3 +137,29 @@ TEST(dijkstra, dijkstra_algorithm)
                     << input_distance_array[4] << " " << input_distance_array[5];
 }
 
+TEST(train_object, constructor)
+{
+    node_info constructor_map[TEST_MAP_SIZE];
+    memcpy(constructor_map, test_map, sizeof(test_map));
+
+    node_info train_node = 
+    {
+        .current_index = TEST_MAP_SIZE,
+        .stop_closed = false,
+        .next_node[0] = {2, 0},
+        .next_node[1] = {2, 1},
+        .next_node[2] = {INF_DIST, NO_CONNECTION}
+    };
+
+    Train test_train(constructor_map, TEST_MAP_SIZE, train_node.next_node[0], 
+          train_node.next_node[1], "test_train");
+
+    EXPECT_TRUE(compare_map(constructor_map, test_train.get_local_map(), 
+                    TEST_MAP_SIZE)) << "local map does not match";
+    
+    EXPECT_TRUE(compare_map(&train_node, &test_train.get_local_map()[TEST_MAP_SIZE], 1))\
+        << "Train position does not match";
+    
+    EXPECT_TRUE(test_train.get_train_name() == "test_train") << "train name is " \
+            << test_train.get_train_name();
+}

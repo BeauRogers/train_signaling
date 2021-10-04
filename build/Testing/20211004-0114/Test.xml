@@ -24,19 +24,25 @@
 	ProcessorClockFrequency="0"
 	>
 	<Testing>
-		<StartDateTime>Oct 03 23:07 EDT</StartDateTime>
-		<StartTestTime>1633316842</StartTestTime>
+		<StartDateTime>Oct 04 14:24 EDT</StartDateTime>
+		<StartTestTime>1633371871</StartTestTime>
 		<TestList>
 			<Test>./test/TrainTests</Test>
 		</TestList>
-		<Test Status="passed">
+		<Test Status="failed">
 			<Name>TrainTests</Name>
 			<Path>./test</Path>
 			<FullName>./test/TrainTests</FullName>
 			<FullCommandLine>/Users/beaurogers/Documents/C++_Programming/Ecobee\ Interview/train_signaling/build/test/TrainTests</FullCommandLine>
 			<Results>
+				<NamedMeasurement type="text/string" name="Exit Code">
+					<Value>Failed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Exit Value">
+					<Value>1</Value>
+				</NamedMeasurement>
 				<NamedMeasurement type="numeric/double" name="Execution Time">
-					<Value>0.190243</Value>
+					<Value>0.0926758</Value>
 				</NamedMeasurement>
 				<NamedMeasurement type="numeric/double" name="Processors">
 					<Value>1</Value>
@@ -51,12 +57,12 @@
 					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
 				</NamedMeasurement>
 				<Measurement>
-					<Value encoding="base64" compression="gzip">eJyNkcFOwzAMhu99Ch9XTU2AOwfEJoQQMLXsNFVV2pkQaBLkpNvrk6zrRJE65kts57P9J847Y5SRoIUysxTeyWrga4fkeI2iIyuju7BNp9F4x+/n82oVsiS0DnV82dgaER6NR9op3HNPoVPllDSijYC0Vrbo0fnfrqOGy+hVcTBrmmRze7IS8qOqG4iM62X1AbhOhZMlm+xkJTy0thZtD6DZKbIm6gWHPuu+/8DXPXdo+owk8S2EYVyygXz9AgcrRzdMx6Cw5CvRSkvKf+hA9/b6dAENsyvQLr1MSA+Dt160aTJds1WfXy58+Fj4kGWDM6X5DPiv3KHknNSppXgUlG3t3oyXPr1sIGHYeFJ4yOquKJaL+OJjJUt+AOrA6P8=</Value>
+					<Value encoding="base64" compression="gzip">eJytU0tv2zAMvutXED016CIvK7CDgRyCNS2KvYok3SUIDFlhVHWyFOjR7OdPspLWHpA0h/EiivxIfSTFWdBaagENk/pyABtrGigeHVpX1MiCNSKpN4aHBrV3xZerq+ohWi1rmhhXTLmpEeFee7QvEneFtzFT5aTQTCWAMEYo9Oh8V3WWFyJpVXqYck6W41dZwWzP6hoSxmVa+QIuyHhSshy+ygrulKmZygDUL9IanfiCQz8M23/Ao4xrk35HK3ARr/E5soTZ4w9oZdXz0CZd5sb6iilhrPRPTURn+fn1DDRcfoTGDc4jksHgjWdqQI7HrOXzbxcb3id+sNKDcozzCeC7dA8h51LN38LUz8h9n27XQ7nRMWvg3ljSfo/WCx0zcKYUrsl//aTtn1wkY5qAo3y7LUefr0u4ZVIFi+QXUwHBbEp4Y0UF7rVKswbj9ozHcPHmH10QgAn3gakSNkw5JNM/21glrmMaG5Dk4lIwSNfJnMZ0O7n/Nr051aB3Z9QNPDWnY8vjkdnh2ux0fzmPLyVYpmn/pVjJw2Q+z5V8ypG0X1+m/AGUdLE1UKMyu/K8FhASo/ewxXS+IH8B4CyVTg==</Value>
 				</Measurement>
 			</Results>
 		</Test>
-		<EndDateTime>Oct 03 23:07 EDT</EndDateTime>
-		<EndTestTime>1633316842</EndTestTime>
+		<EndDateTime>Oct 04 14:24 EDT</EndDateTime>
+		<EndTestTime>1633371871</EndTestTime>
 		<ElapsedMinutes>0</ElapsedMinutes>
 	</Testing>
 </Site>

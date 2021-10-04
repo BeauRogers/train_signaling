@@ -17,10 +17,12 @@ add_subdirectory(googletest)
 set(Headers 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/include/merge_sort.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/include/dijkstra.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/include/train.h
 )
 set(Sources 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/merge_sort.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/dijkstra.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/train.cpp
 )
 
 # this will link with other things to run programs

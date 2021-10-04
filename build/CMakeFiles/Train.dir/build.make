@@ -97,19 +97,35 @@ CMakeFiles/Train.dir/src/dijkstra.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Train.dir/src/dijkstra.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/src/dijkstra.cpp" -o CMakeFiles/Train.dir/src/dijkstra.cpp.s
 
+CMakeFiles/Train.dir/src/train.cpp.o: CMakeFiles/Train.dir/flags.make
+CMakeFiles/Train.dir/src/train.cpp.o: ../src/train.cpp
+CMakeFiles/Train.dir/src/train.cpp.o: CMakeFiles/Train.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Train.dir/src/train.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Train.dir/src/train.cpp.o -MF CMakeFiles/Train.dir/src/train.cpp.o.d -o CMakeFiles/Train.dir/src/train.cpp.o -c "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/src/train.cpp"
+
+CMakeFiles/Train.dir/src/train.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Train.dir/src/train.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/src/train.cpp" > CMakeFiles/Train.dir/src/train.cpp.i
+
+CMakeFiles/Train.dir/src/train.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Train.dir/src/train.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/src/train.cpp" -o CMakeFiles/Train.dir/src/train.cpp.s
+
 # Object files for target Train
 Train_OBJECTS = \
 "CMakeFiles/Train.dir/src/merge_sort.cpp.o" \
-"CMakeFiles/Train.dir/src/dijkstra.cpp.o"
+"CMakeFiles/Train.dir/src/dijkstra.cpp.o" \
+"CMakeFiles/Train.dir/src/train.cpp.o"
 
 # External object files for target Train
 Train_EXTERNAL_OBJECTS =
 
 libTrain.a: CMakeFiles/Train.dir/src/merge_sort.cpp.o
 libTrain.a: CMakeFiles/Train.dir/src/dijkstra.cpp.o
+libTrain.a: CMakeFiles/Train.dir/src/train.cpp.o
 libTrain.a: CMakeFiles/Train.dir/build.make
 libTrain.a: CMakeFiles/Train.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libTrain.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libTrain.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/Train.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Train.dir/link.txt --verbose=$(VERBOSE)
 

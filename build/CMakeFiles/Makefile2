@@ -152,12 +152,12 @@ test/clean: test/CMakeFiles/TrainTests.dir/clean
 CMakeFiles/Train.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Train.dir/build.make CMakeFiles/Train.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Train.dir/build.make CMakeFiles/Train.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=1,2,3 "Built target Train"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=1,2,3,4 "Built target Train"
 .PHONY : CMakeFiles/Train.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Train.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" 3
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Train.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" 0
 .PHONY : CMakeFiles/Train.dir/rule
@@ -178,7 +178,7 @@ CMakeFiles/Train.dir/clean:
 googletest/googlemock/CMakeFiles/gmock.dir/all: googletest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) $(MAKESILENT) -f googletest/googlemock/CMakeFiles/gmock.dir/build.make googletest/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) $(MAKESILENT) -f googletest/googlemock/CMakeFiles/gmock.dir/build.make googletest/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=6,7 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=7,8 "Built target gmock"
 .PHONY : googletest/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -205,7 +205,7 @@ googletest/googlemock/CMakeFiles/gmock_main.dir/all: googletest/googlemock/CMake
 googletest/googlemock/CMakeFiles/gmock_main.dir/all: googletest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) $(MAKESILENT) -f googletest/googlemock/CMakeFiles/gmock_main.dir/build.make googletest/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) $(MAKESILENT) -f googletest/googlemock/CMakeFiles/gmock_main.dir/build.make googletest/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=8,9 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=9,10 "Built target gmock_main"
 .PHONY : googletest/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -231,7 +231,7 @@ googletest/googlemock/CMakeFiles/gmock_main.dir/clean:
 googletest/googletest/CMakeFiles/gtest_main.dir/all: googletest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) $(MAKESILENT) -f googletest/googletest/CMakeFiles/gtest_main.dir/build.make googletest/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) $(MAKESILENT) -f googletest/googletest/CMakeFiles/gtest_main.dir/build.make googletest/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=12,13 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=13,14 "Built target gtest_main"
 .PHONY : googletest/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -257,7 +257,7 @@ googletest/googletest/CMakeFiles/gtest_main.dir/clean:
 googletest/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) $(MAKESILENT) -f googletest/googletest/CMakeFiles/gtest.dir/build.make googletest/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) $(MAKESILENT) -f googletest/googletest/CMakeFiles/gtest.dir/build.make googletest/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=10,11 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=11,12 "Built target gtest"
 .PHONY : googletest/googletest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
@@ -285,12 +285,12 @@ test/CMakeFiles/TrainTests.dir/all: googletest/googletest/CMakeFiles/gtest_main.
 test/CMakeFiles/TrainTests.dir/all: googletest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/TrainTests.dir/build.make test/CMakeFiles/TrainTests.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/TrainTests.dir/build.make test/CMakeFiles/TrainTests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=4,5 "Built target TrainTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" --progress-num=5,6 "Built target TrainTests"
 .PHONY : test/CMakeFiles/TrainTests.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/TrainTests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" 9
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/TrainTests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/CMakeFiles" 0
 .PHONY : test/CMakeFiles/TrainTests.dir/rule

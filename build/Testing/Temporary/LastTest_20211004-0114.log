@@ -1,14 +1,14 @@
-Start testing: Oct 03 23:07 EDT
+Start testing: Oct 04 14:24 EDT
 ----------------------------------------------------------
 1/1 Testing: TrainTests
 1/1 Test: TrainTests
 Command: "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/test/TrainTests"
 Directory: /Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/test
-"TrainTests" start time: Oct 03 23:07 EDT
+"TrainTests" start time: Oct 04 14:24 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest/src/gtest_main.cc
-[==========] Running 2 tests from 2 test suites.
+[==========] Running 3 tests from 3 test suites.
 [----------] Global test environment set-up.
 [----------] 1 test from MergeTesting
 [ RUN      ] MergeTesting.mergeSort_algorithm
@@ -20,15 +20,30 @@ Running main() from /Users/beaurogers/Documents/C++_Programming/Ecobee Interview
 [       OK ] dijkstra.dijkstra_algorithm (0 ms)
 [----------] 1 test from dijkstra (0 ms total)
 
+[----------] 1 test from train_object
+[ RUN      ] train_object.constructor
+test_train constructor called
+/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/test/TrainTests.cpp:163: Failure
+Value of: test_train.get_train_name() == "test_train1"
+  Actual: false
+Expected: true
+train name is test_train
+[  FAILED  ] train_object.constructor (0 ms)
+[----------] 1 test from train_object (0 ms total)
+
 [----------] Global test environment tear-down
-[==========] 2 tests from 2 test suites ran. (0 ms total)
+[==========] 3 tests from 3 test suites ran. (0 ms total)
 [  PASSED  ] 2 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] train_object.constructor
+
+ 1 FAILED TEST
 <end of output>
-Test time =   0.19 sec
+Test time =   0.09 sec
 ----------------------------------------------------------
-Test Passed.
-"TrainTests" end time: Oct 03 23:07 EDT
+Test Failed.
+"TrainTests" end time: Oct 04 14:24 EDT
 "TrainTests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Oct 03 23:07 EDT
+End testing: Oct 04 14:24 EDT

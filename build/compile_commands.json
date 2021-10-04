@@ -10,6 +10,11 @@
   "file": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/src/dijkstra.cpp"
 },
 {
+  "directory": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build",
+  "command": "/usr/bin/clang++   -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -fPIC -std=gnu++11 -o CMakeFiles/Train.dir/src/train.cpp.o -c \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/src/train.cpp\"",
+  "file": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/src/train.cpp"
+},
+{
   "directory": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/googletest/googlemock",
   "command": "/usr/bin/clang++  -I\"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googlemock/include\" -I\"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googlemock\" -isystem \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest/include\" -isystem \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -fPIC  -DGTEST_HAS_PTHREAD=1   -std=c++11 -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googlemock/src/gmock-all.cc\"",
   "file": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googlemock/src/gmock-all.cc"

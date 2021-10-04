@@ -297,6 +297,30 @@ src/merge_sort.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Train.dir/build.make CMakeFiles/Train.dir/src/merge_sort.cpp.s
 .PHONY : src/merge_sort.cpp.s
 
+src/train.o: src/train.cpp.o
+.PHONY : src/train.o
+
+# target to build an object file
+src/train.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Train.dir/build.make CMakeFiles/Train.dir/src/train.cpp.o
+.PHONY : src/train.cpp.o
+
+src/train.i: src/train.cpp.i
+.PHONY : src/train.i
+
+# target to preprocess a source file
+src/train.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Train.dir/build.make CMakeFiles/Train.dir/src/train.cpp.i
+.PHONY : src/train.cpp.i
+
+src/train.s: src/train.cpp.s
+.PHONY : src/train.s
+
+# target to generate assembly for a file
+src/train.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Train.dir/build.make CMakeFiles/Train.dir/src/train.cpp.s
+.PHONY : src/train.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -322,6 +346,9 @@ help:
 	@echo "... src/merge_sort.o"
 	@echo "... src/merge_sort.i"
 	@echo "... src/merge_sort.s"
+	@echo "... src/train.o"
+	@echo "... src/train.i"
+	@echo "... src/train.s"
 .PHONY : help
 
 

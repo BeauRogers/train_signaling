@@ -280,8 +280,11 @@ test/CMakeFiles/TrainTests.dir/TrainTests.cpp.o: ../test/TrainTests.cpp \
   ../googletest/googletest/include/gtest/gtest_pred_impl.h \
   ../src/include/merge_sort.h \
   ../src/include/dijkstra.h \
-  ../src/include/rail_pieces.h
+  ../src/include/rail_pieces.h \
+  ../src/include/train.h
 
+
+../src/include/train.h:
 
 ../src/include/rail_pieces.h:
 

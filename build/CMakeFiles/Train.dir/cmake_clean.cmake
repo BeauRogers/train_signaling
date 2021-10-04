@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Train.dir/src/dijkstra.cpp.o.d"
   "CMakeFiles/Train.dir/src/merge_sort.cpp.o"
   "CMakeFiles/Train.dir/src/merge_sort.cpp.o.d"
+  "CMakeFiles/Train.dir/src/train.cpp.o"
+  "CMakeFiles/Train.dir/src/train.cpp.o.d"
   "libTrain.a"
   "libTrain.pdb"
 )

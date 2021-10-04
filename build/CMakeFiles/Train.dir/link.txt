@@ -1,2 +1,2 @@
-/usr/bin/ar qc libTrain.a CMakeFiles/Train.dir/src/merge_sort.cpp.o CMakeFiles/Train.dir/src/dijkstra.cpp.o
+/usr/bin/ar qc libTrain.a CMakeFiles/Train.dir/src/merge_sort.cpp.o CMakeFiles/Train.dir/src/dijkstra.cpp.o CMakeFiles/Train.dir/src/train.cpp.o
 /usr/bin/ranlib libTrain.a

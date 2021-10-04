@@ -26,8 +26,12 @@ class Train
     
     void display_train_position(void);
 
-    bool train_is_waiting(void);
-    
+    bool is_train_waiting(void);
+    node_info* get_local_map(void);
+    int* get_stop_order(void);
+    int* get_stop_order_distance(void);
+    std::string get_train_name(void);
+
     private:
       node_info map[NUM_NODES + 1]; 
       int num_stops;
@@ -42,18 +46,21 @@ class Train
       int dist_to_next;
       int dist_from_completed;
 
-      /*Determine how many stops to destination and next stop 
+      /*
+      Determine how many stops to destination and next stop 
       Return true is destination can be reached. False otherwise
       */
       bool initialize_travel_to_dest(int dest_stop_arg, node_info* global_map);
 
-      /*Set the next stop to a closed state to ensure no other trains can
+      /*
+      Set the next stop to a closed state to ensure no other trains can
       move to that stop. Open up the current stop again since the train will
       be leaving from there
       */
       void close_next_open_last_stop(node_info* global_map, int current_index, int next_index);
 
-      /*Recursive function to determine the next index that will be the 
+      /*
+      Recursive function to determine the next index that will be the 
       shortest path to the destination based on the stop_order[][] array
       found in determine_route(). This function assumes destination is reachable
       */
