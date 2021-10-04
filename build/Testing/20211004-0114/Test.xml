@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20211004-0114-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.21.3"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="macOS"
+	Hostname="Beaus-MacBook-Pro.local"
+	OSRelease="11.4"
+	OSVersion="20F71"
+	OSPlatform="arm64"
+	Is64Bits="1"
+	VendorString="IBM"
+	VendorID="IBM"
+	FamilyID="16777228"
+	ModelID="2"
+	ProcessorCacheSize="131072"
+	NumberOfLogicalCPU="8"
+	NumberOfPhysicalCPU="8"
+	TotalVirtualMemory="5120"
+	TotalPhysicalMemory="8192"
+	LogicalProcessorsPerPhysical="8"
+	ProcessorClockFrequency="0"
+	>
+	<Testing>
+		<StartDateTime>Oct 03 23:07 EDT</StartDateTime>
+		<StartTestTime>1633316842</StartTestTime>
+		<TestList>
+			<Test>./test/TrainTests</Test>
+		</TestList>
+		<Test Status="passed">
+			<Name>TrainTests</Name>
+			<Path>./test</Path>
+			<FullName>./test/TrainTests</FullName>
+			<FullCommandLine>/Users/beaurogers/Documents/C++_Programming/Ecobee\ Interview/train_signaling/build/test/TrainTests</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.190243</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/Users/beaurogers/Documents/C++_Programming/Ecobee\ Interview/train_signaling/build/test/TrainTests</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJyNkcFOwzAMhu99Ch9XTU2AOwfEJoQQMLXsNFVV2pkQaBLkpNvrk6zrRJE65kts57P9J847Y5SRoIUysxTeyWrga4fkeI2iIyuju7BNp9F4x+/n82oVsiS0DnV82dgaER6NR9op3HNPoVPllDSijYC0Vrbo0fnfrqOGy+hVcTBrmmRze7IS8qOqG4iM62X1AbhOhZMlm+xkJTy0thZtD6DZKbIm6gWHPuu+/8DXPXdo+owk8S2EYVyygXz9AgcrRzdMx6Cw5CvRSkvKf+hA9/b6dAENsyvQLr1MSA+Dt160aTJds1WfXy58+Fj4kGWDM6X5DPiv3KHknNSppXgUlG3t3oyXPr1sIGHYeFJ4yOquKJaL+OJjJUt+AOrA6P8=</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<EndDateTime>Oct 03 23:07 EDT</EndDateTime>
+		<EndTestTime>1633316842</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

@@ -1,0 +1,22 @@
+Start testing: Oct 03 17:25 EDT
+----------------------------------------------------------
+1/1 Testing: TrainTests
+1/1 Test: TrainTests
+Command: "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/test/TrainTests"
+Directory: /Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/test
+"TrainTests" start time: Oct 03 17:25 EDT
+Output:
+----------------------------------------------------------
+Running main() from /Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest/src/gtest_main.cc
+[==========] Running 0 tests from 0 test suites.
+[==========] 0 tests from 0 test suites ran. (0 ms total)
+[  PASSED  ] 0 tests.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TrainTests" end time: Oct 03 17:25 EDT
+"TrainTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 03 17:25 EDT

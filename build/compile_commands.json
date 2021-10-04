@@ -1,0 +1,37 @@
+[
+{
+  "directory": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build",
+  "command": "/usr/bin/clang++   -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -fPIC -std=gnu++11 -o CMakeFiles/Train.dir/src/merge_sort.cpp.o -c \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/src/merge_sort.cpp\"",
+  "file": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/src/merge_sort.cpp"
+},
+{
+  "directory": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build",
+  "command": "/usr/bin/clang++   -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -fPIC -std=gnu++11 -o CMakeFiles/Train.dir/src/dijkstra.cpp.o -c \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/src/dijkstra.cpp\"",
+  "file": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/src/dijkstra.cpp"
+},
+{
+  "directory": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/googletest/googlemock",
+  "command": "/usr/bin/clang++  -I\"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googlemock/include\" -I\"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googlemock\" -isystem \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest/include\" -isystem \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -fPIC  -DGTEST_HAS_PTHREAD=1   -std=c++11 -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googlemock/src/gmock-all.cc\"",
+  "file": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googlemock/src/gmock-all.cc"
+},
+{
+  "directory": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/googletest/googlemock",
+  "command": "/usr/bin/clang++  -isystem \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googlemock/include\" -isystem \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googlemock\" -isystem \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest/include\" -isystem \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -fPIC  -DGTEST_HAS_PTHREAD=1   -std=c++11 -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googlemock/src/gmock_main.cc\"",
+  "file": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googlemock/src/gmock_main.cc"
+},
+{
+  "directory": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/googletest/googletest",
+  "command": "/usr/bin/clang++  -I\"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest/include\" -I\"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -fPIC  -DGTEST_HAS_PTHREAD=1   -std=c++11 -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest/src/gtest-all.cc\"",
+  "file": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest/src/gtest-all.cc"
+},
+{
+  "directory": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/googletest/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest/include\" -isystem \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -fPIC  -DGTEST_HAS_PTHREAD=1   -std=c++11 -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest/src/gtest_main.cc\"",
+  "file": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest/src/gtest_main.cc"
+},
+{
+  "directory": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/test",
+  "command": "/usr/bin/clang++  -isystem \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest/include\" -isystem \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -fPIE -std=gnu++11 -o CMakeFiles/TrainTests.dir/TrainTests.cpp.o -c \"/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/test/TrainTests.cpp\"",
+  "file": "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/test/TrainTests.cpp"
+}
+]

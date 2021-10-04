@@ -1,0 +1,34 @@
+Start testing: Oct 03 23:07 EDT
+----------------------------------------------------------
+1/1 Testing: TrainTests
+1/1 Test: TrainTests
+Command: "/Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/test/TrainTests"
+Directory: /Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/build/test
+"TrainTests" start time: Oct 03 23:07 EDT
+Output:
+----------------------------------------------------------
+Running main() from /Users/beaurogers/Documents/C++_Programming/Ecobee Interview/train_signaling/googletest/googletest/src/gtest_main.cc
+[==========] Running 2 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from MergeTesting
+[ RUN      ] MergeTesting.mergeSort_algorithm
+[       OK ] MergeTesting.mergeSort_algorithm (0 ms)
+[----------] 1 test from MergeTesting (0 ms total)
+
+[----------] 1 test from dijkstra
+[ RUN      ] dijkstra.dijkstra_algorithm
+[       OK ] dijkstra.dijkstra_algorithm (0 ms)
+[----------] 1 test from dijkstra (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 2 test suites ran. (0 ms total)
+[  PASSED  ] 2 tests.
+<end of output>
+Test time =   0.19 sec
+----------------------------------------------------------
+Test Passed.
+"TrainTests" end time: Oct 03 23:07 EDT
+"TrainTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 03 23:07 EDT
