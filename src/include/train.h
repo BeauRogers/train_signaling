@@ -31,6 +31,7 @@ class Train
     int* get_stop_order(void);
     int* get_stop_order_distance(void);
     std::string get_train_name(void);
+    next_node get_position(void);
 
     private:
       node_info map[NUM_NODES + 1]; 

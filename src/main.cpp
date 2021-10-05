@@ -7,11 +7,6 @@ using namespace std;
 #include <thread>
 #include "include/train.h"
 
-// #define PRINT_MAPS
-#undef PRINT_MAPS
-// #define INDICATE_WAITS
-#undef INDICATE_WAITS
-
 // driver program to test above function
 int main()
 {
@@ -50,6 +45,7 @@ int main()
     cout << "Train 2 route not valid" << endl;
     return 0;
   }
+
   while(1)
   {
     if((train1.move_train(rail_map) & train2.move_train(rail_map)) == true)

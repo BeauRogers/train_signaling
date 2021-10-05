@@ -22,7 +22,7 @@ Train::Train(node_info* map_arg, int num_stops_arg, next_node stop0_arg,
     map[NUM_NODES].next_node[2].index = NO_CONNECTION;
     map[NUM_NODES].next_node[2].distance = INF_DIST;
     train_name = name_arg;
-    cout << train_name << " constructor called" << endl;
+    // cout << train_name << " constructor called" << endl;
 #ifdef PRINT_MAPS
     for (int i = 0; i < (NUM_NODES + 1); i++)
     cout << "Constructed map " << map[i].current_index << endl;
@@ -100,7 +100,7 @@ bool Train::move_train(node_info* global_map)
         completed_index = next_index;
         if(completed_index == dest_index)
         {
-            cout << "Destination reached" << endl;
+            // cout << "Destination reached" << endl;
             global_map[stop_order[0][completed_index]].stop_closed = false;
             return true;
         }
@@ -203,6 +203,12 @@ int* Train::get_stop_order_distance(void)
 std::string Train::get_train_name(void)
 {
     return train_name;
+}
+
+next_node Train::get_position(void)
+{
+    next_node return_value = {dist_to_next, stop_order[0][next_index]};
+    return return_value;
 }
 
 bool Train::initialize_travel_to_dest(int dest_stop_arg, node_info* global_map)

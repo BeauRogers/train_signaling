@@ -1,6 +1,8 @@
 
 #include "include/rail_pieces.h"
 
+// Hard coded implementation for demonstration purposes. 
+// Production level would use a configuration file as input.
 node_info map[NUM_NODES] = 
     {
         {
