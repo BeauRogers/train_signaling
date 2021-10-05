@@ -5,6 +5,10 @@ using namespace std;
 #include "include/dijkstra.h"
 #include "include/merge_sort.h"
 
+// #define PRINT_MAPS
+#undef PRINT_MAPS
+// #define INDICATE_WAITS
+#undef INDICATE_WAITS
 
 //Train Object
 

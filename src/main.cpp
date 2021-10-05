@@ -10,6 +10,7 @@ using namespace std;
 int main()
 {
   node_info* rail_map = get_rail_map();
+  bool valid_route;
 
   //input train's initial position
   next_node adjacent_train_stops[4] =
@@ -19,46 +20,20 @@ int main()
     { .index = 1, .distance = 1},
     { .index = 2, .distance = 3}
   };
+  int destinations[2] = {4, 4};
   std:string train_names[2] = {"Train A", "Train B"};
 
-  Train train1(rail_map, NUM_NODES, adjacent_train_stops[0], 
-              adjacent_train_stops[1], "Train A");
+  Train* train_list = (Train*)malloc(sizeof(Train) * 2);
 
-  adjacent_train_stops[0].index = 1;
-  adjacent_train_stops[0].distance = 1;
-  adjacent_train_stops[1].index = 2;
-  adjacent_train_stops[1].distance = 2;
-  Train train2(rail_map, NUM_NODES, adjacent_train_stops[0], 
-              adjacent_train_stops[1], "Train B");
+  initialize_trains(train_list, 2, rail_map, train_names, NUM_NODES, adjacent_train_stops);
 
-  if(train1.determine_route(2, rail_map) == false)
+  valid_route = verify_valid_routes(train_list, 2, destinations, rail_map);
+  while(valid_route)
   {
-    cout << "Train 1 route not valid" << endl;
-    return 0;
-  }
-  if(train2.determine_route(2, rail_map) == false)
-  {
-    cout << "Train 2 route not valid" << endl;
-    return 0;
-  }
-
-  while(1)
-  {
-    if((train1.move_train(rail_map) & train2.move_train(rail_map)) == true)
+    if(run_train_simulation(rail_map, train_list, 2, 1000) == true)
     {
-      train1.display_train_position();
-      train2.display_train_position();
       break;
     }
-    train1.display_train_position();
-    train2.display_train_position();
-    cout << endl;
-    if(train1.is_train_waiting() && train2.is_train_waiting())
-    {
-      cout << "Trains in gridlock" << endl;
-      break;
-    }
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
   }
   return 0;
 }

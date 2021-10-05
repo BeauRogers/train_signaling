@@ -35,7 +35,7 @@ bool run_train_simulation(node_info* global_map, Train* trains, int num_trains, 
     bool trains_in_gridlock = true;
     for(int i = 0; i<num_trains; i++)
     {
-        destination_reached = destination_reached && trains[i].move_train(global_map);
+        destination_reached = destination_reached & trains[i].move_train(global_map);
     }
     if(destination_reached == true)
     {
@@ -52,7 +52,7 @@ bool run_train_simulation(node_info* global_map, Train* trains, int num_trains, 
     cout << endl;
     for(int i = 0; i<num_trains; i++)
     {
-        trains_in_gridlock = trains_in_gridlock && trains[i].is_train_waiting();
+        trains_in_gridlock = trains_in_gridlock & trains[i].is_train_waiting();
     }
     if(trains_in_gridlock == true)
     {
