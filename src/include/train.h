@@ -1,7 +1,11 @@
+#ifndef TRAIN
+#define TRAIN
+
 #include <iostream>
 using namespace std;
 #include <limits.h>
 #include "rail_pieces.h"
+
 
 // #define PRINT_MAPS
 #undef PRINT_MAPS
@@ -67,3 +71,5 @@ class Train
       */
       int determine_next_index(int root_index, int last_index, int dist_travelled);
 };
+
+#endif

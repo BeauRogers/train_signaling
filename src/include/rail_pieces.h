@@ -1,9 +1,10 @@
+#ifndef RAIL_PIECES
+#define RAIL_PIECES
+
+
 #include <iostream>
 using namespace std;
 #include <limits.h>
-
-#ifndef RAIL_PIECES
-#define RAIL_PIECES
 
 #define NUM_NODES 6
 #define INF_DIST 65535

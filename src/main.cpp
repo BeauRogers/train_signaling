@@ -1,11 +1,10 @@
-// A C++ program for Dijkstra's single source shortest path algorithm.
-// The program is for adjacency matrix representation of the graph
 #include <iostream>
 using namespace std;
 #include <limits.h>
 #include <chrono>
 #include <thread>
 #include "include/train.h"
+#include "include/simulation.h"
 
 // driver program to test above function
 int main()
@@ -13,17 +12,14 @@ int main()
   node_info* rail_map = get_rail_map();
 
   //input train's initial position
-  next_node adjacent_train_stops[2] =
+  next_node adjacent_train_stops[4] =
   {
-    {
-      .index = 0,
-      .distance = 3
-    },
-    {
-      .index = 1,
-      .distance = 1
-    }
+    { .index = 0, .distance = 3},
+    { .index = 1, .distance = 1},
+    { .index = 1, .distance = 1},
+    { .index = 2, .distance = 3}
   };
+  std:string train_names[2] = {"Train A", "Train B"};
 
   Train train1(rail_map, NUM_NODES, adjacent_train_stops[0], 
               adjacent_train_stops[1], "Train A");
