@@ -20,7 +20,7 @@ int main()
     { .index = 1, .distance = 1},
     { .index = 2, .distance = 3}
   };
-  int destinations[2] = {4, 4};
+  int destinations[2] = {5, 5};
   std:string train_names[2] = {"Train A", "Train B"};
 
   Train* train_list = (Train*)malloc(sizeof(Train) * 2);
@@ -30,7 +30,7 @@ int main()
   valid_route = verify_valid_routes(train_list, 2, destinations, rail_map);
   while(valid_route)
   {
-    if(run_train_simulation(rail_map, train_list, 2, 1000) == true)
+    if(run_train_simulation(rail_map, train_list, 2, 1500) == true)
     {
       break;
     }
